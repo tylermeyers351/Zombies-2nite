@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] GameObject robotExplosionVFX;
+    [SerializeField] float positionYoffset = 0f;
+    [SerializeField] float rotationYoffset = 190f;
     [SerializeField] int startingHealth = 3;
     
     int currentHealth;
@@ -33,7 +35,11 @@ public class EnemyHealth : MonoBehaviour
     public void SelfDestruct()
     {
         gameManager.AdjustEnemiesLeft(-1);
-        Instantiate(robotExplosionVFX, transform.position, Quaternion.identity);
+        
+        Quaternion positionRotation = Quaternion.Euler(0f, rotationYoffset, 0f);
+        Vector3 spawnPosition = transform.position + Vector3.up * positionYoffset;
+
+        Instantiate(robotExplosionVFX, spawnPosition, positionRotation);
         Destroy(gameObject);
 
     }

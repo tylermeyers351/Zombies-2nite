@@ -8,6 +8,7 @@ public class WeaponSO : ScriptableObject
     public int Damage;
     public float FireRate;
     public GameObject HitVFXPrefab;
+    public GameObject ZombieHitVFX;
     public bool IsAutomatic = false;
     public bool CanZoom = false;
     public float ZoomAmount = 10f;

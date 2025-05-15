@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 2708334265661235058}
   - component: {fileID: 2119109499154637414}
   - component: {fileID: 2568987322714276178}
-  - component: {fileID: 1275613187428300720}
   - component: {fileID: 1488363326845834826}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +47,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -57,7 +56,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.76
-  m_BaseOffset: -0.14
+  m_BaseOffset: -0.08
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &2708334265661235058
@@ -107,31 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df48070bd7661d849a1bb610730ff56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robotExplosionVFX: {fileID: 7276545633959671630, guid: 7b171673b683b5448a2bb5a9e7b28ced, type: 3}
-  positionYoffset: 1
+  robotExplosionVFX: {fileID: 0}
+  positionYoffset: 1.5
+  rotationYoffset: 160
+  rotationZoffset: 10
   startingHealth: 3
---- !u!95 &1275613187428300720
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110475986374885971}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d3b4f176653fdaa4e95315e34271a6d9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!136 &1488363326845834826
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -238,6 +217,14 @@ PrefabInstance:
     - target: {fileID: 3170052297267817369, guid: ef26b2dc882f2d741b1e5521ca67f8ef, type: 3}
       propertyPath: m_Name
       value: ShirtlessZombie_BodyParts_FREE_URP
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526921292140686169, guid: ef26b2dc882f2d741b1e5521ca67f8ef, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3b40539611415c24a9fb4c3b1aba3548, type: 2}
+    - target: {fileID: 8526921292140686169, guid: ef26b2dc882f2d741b1e5521ca67f8ef, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

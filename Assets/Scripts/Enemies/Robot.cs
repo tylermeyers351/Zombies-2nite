@@ -13,6 +13,10 @@ public class Robot : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        
+        // Randomize animation start time
+        Animator animator = GetComponentInChildren<Animator>();
+        animator.Play(0, 0, Random.Range(0f, 1f));
     }
 
     void Start()

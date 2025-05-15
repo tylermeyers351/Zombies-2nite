@@ -4885,7 +4885,8 @@ MonoBehaviour:
   interactionLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  impulseSource: {fileID: -8832606561003813994}
+  rotationYoffset: 160
+  rotationZoffset: 20
 --- !u!114 &-8832606561003813994
 MonoBehaviour:
   m_ObjectHideFlags: 0

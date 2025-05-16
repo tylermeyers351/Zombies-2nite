@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
         if (enemiesLeft <= 0)
         {
-            youWinText.SetActive(true);
+            // youWinText.SetAct   ive(true);
         }
     }
 

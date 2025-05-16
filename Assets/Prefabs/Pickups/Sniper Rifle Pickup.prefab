@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 787803941487070268, guid: 73e2b5870df56e74aba7697cbdeea1bd, type: 3}
+      propertyPath: weaponSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 7752b06ef07195e44a36b6fb8dc7b576, type: 2}
     - target: {fileID: 5535128746712917924, guid: 73e2b5870df56e74aba7697cbdeea1bd, type: 3}
       propertyPath: m_Name
-      value: Base Weapon Pickup
+      value: Sniper Rifle Pickup
       objectReference: {fileID: 0}
     - target: {fileID: 8131277223872517944, guid: 73e2b5870df56e74aba7697cbdeea1bd, type: 3}
       propertyPath: m_LocalPosition.x

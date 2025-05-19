@@ -11,6 +11,8 @@ public class ActiveWeapon : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera playerFollowCamera;
     [SerializeField] Camera weaponCamera;
     [SerializeField] TMP_Text ammoText;
+    [SerializeField] AudioSource gunShot;
+    [SerializeField] AudioSource emptyShot;
     
     WeaponSO currentWeaponSO;
     Animator animator;
@@ -81,16 +83,23 @@ public class ActiveWeapon : MonoBehaviour
         if (currentTime < cooldownTimer) return;
 
         if (!starterAssetsInputs.shoot) return;
-        
+
         if (currentAmmo > 0)
         {
             currentWeapon.Shoot(currentWeaponSO);
             animator.Play(SHOOT_STRING, 0, 0f);
             currentTime = 0;
             AdjustAmmo(-1);
+
+            gunShot.Play();
+        }
+        else
+        {
+            emptyShot.Play();
+            starterAssetsInputs.ShootInput(false);
         }
 
-        if(!currentWeaponSO.IsAutomatic)
+        if (!currentWeaponSO.IsAutomatic)
         {
             starterAssetsInputs.ShootInput(false);
         }

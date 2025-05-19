@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443257f135b0a7e42b5c85d618c7a960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 100
   weaponSO: {fileID: 0}
 --- !u!136 &8419815262935327851
 CapsuleCollider:

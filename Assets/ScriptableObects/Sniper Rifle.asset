@@ -15,10 +15,10 @@ MonoBehaviour:
   weaponPrefab: {fileID: 3346775992642252215, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
   Damage: 5
   FireRate: 1
-  HitVFXPrefab: {fileID: 7993736119627879410, guid: cab5deaea92a1fe47aff9e3ba9bbd1a8, type: 3}
+  HitVFXPrefab: {fileID: 803723339454128378, guid: 2cd8c2fce79864340be1a1d515a76af9, type: 3}
   ZombieHitVFX: {fileID: 7276545633959671630, guid: 7b171673b683b5448a2bb5a9e7b28ced, type: 3}
   IsAutomatic: 0
   CanZoom: 1
   ZoomAmount: 10
   ZoomRotationSpeed: 0.25
-  MagazineSize: 5
+  MagazineSize: 10

@@ -16,6 +16,17 @@ public abstract class Pickup : MonoBehaviour
         {
             ActiveWeapon activeWeapon = other.GetComponentInChildren<ActiveWeapon>();
             OnPickup(activeWeapon);
+
+            PlayerAudio playerAudio = other.GetComponent<PlayerAudio>();
+            if (playerAudio != null)
+            {
+                playerAudio.playReloadAudio();
+            }
+            else
+            {
+                Debug.Log("PlayerAudio not found on player.");
+            }
+
             Destroy(this.gameObject);
         }
     }

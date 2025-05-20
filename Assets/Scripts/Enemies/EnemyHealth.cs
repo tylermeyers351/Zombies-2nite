@@ -9,7 +9,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float rotationZoffset = 50f;
 
     [SerializeField] int startingHealth = 3;
-    [SerializeField] float timeToDestroy = 8f;
+    [SerializeField] float timeToDestroy = 45f;
+
+    [SerializeField] AudioSource loopedAudioSource;
+    [SerializeField] AudioSource deathAudioSource;
+    [SerializeField] AudioClip deathGroan1;
+    [SerializeField] AudioClip deathGroan2;
 
     bool isDead = false;
     int currentHealth;
@@ -36,32 +41,50 @@ public class EnemyHealth : MonoBehaviour
 
         if (!isDead && currentHealth <= 0)
         {
-            SelfDestruct();
+            Death();
         }
     }
 
-    public void SelfDestruct()
+    public void Death()
     {
         gameManager.AdjustEnemiesLeft(-1);
 
         Quaternion positionRotation = Quaternion.Euler(0f, rotationYoffset, rotationZoffset);
         Vector3 spawnPosition = transform.position + Vector3.up * positionYoffset;
 
+        // For non-zombie enemies
         if (robotExplosionVFX)
         {
             Instantiate(robotExplosionVFX, spawnPosition, positionRotation);
             Destroy(gameObject);
         }
 
+        // For zombie enemies
         if (agent)
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
 
+            animator.applyRootMotion = true;
             animator.SetTrigger("Die");
             isDead = true;
+
+            PlayRandomDeathGroan();
+
+            foreach (CapsuleCollider col in GetComponentsInChildren<CapsuleCollider>())
+            {
+                col.enabled = false;
+            }
+
             Destroy(gameObject, timeToDestroy);
         }
+    }
 
+    void PlayRandomDeathGroan()
+    {
+        loopedAudioSource.Stop();
+        AudioClip chosenClip = Random.value < 0.5f ? deathGroan1 : deathGroan2;
+        deathAudioSource.clip = chosenClip;
+        deathAudioSource.Play();
     }
 }

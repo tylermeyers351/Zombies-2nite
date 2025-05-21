@@ -6,7 +6,9 @@ using System.Collections;
 public class Robot : MonoBehaviour
 {
     [SerializeField] int zombieAttackDamage = 2;
-    [SerializeField] float delayDamageAttack = 1f;
+    [SerializeField] float firstDelayDamageAttack = 1f;
+    [SerializeField] float subsequentDelayDamageAttack = 2.6f;
+    float delayDamageAttack;
 
     FirstPersonController player;
     NavMeshAgent agent;
@@ -14,6 +16,9 @@ public class Robot : MonoBehaviour
 
     const string PLAYER_STRING = "Player";
     float steeringSpeed;
+
+    bool isPlayerInRange = false;
+    Coroutine damageCoroutine = null;
 
     void Awake()
     {
@@ -24,6 +29,8 @@ public class Robot : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         animator.Play(0, 0, Random.Range(0f, 1f));
 
+        delayDamageAttack = firstDelayDamageAttack;
+
     }
 
     void Start()
@@ -33,7 +40,20 @@ public class Robot : MonoBehaviour
 
     void Update()
     {
-        if (!player) return;
+        if (player == null)
+        {
+            isPlayerInRange = false;
+
+            // OPTIONAL: Stop attack animation and coroutine if player disappears
+            if (damageCoroutine != null)
+            {
+                StopCoroutine(damageCoroutine);
+                damageCoroutine = null;
+            }
+
+            animator.SetBool("isAttacking", false);
+            return;
+        }
 
         agent.SetDestination(player.transform.position);
     }
@@ -43,7 +63,9 @@ public class Robot : MonoBehaviour
         if (other.CompareTag(PLAYER_STRING))
         {
 
+            delayDamageAttack = firstDelayDamageAttack;
 
+            isPlayerInRange = true;
 
             agent.isStopped = true;
             agent.speed = 0;
@@ -52,8 +74,12 @@ public class Robot : MonoBehaviour
 
             animator.SetBool("isAttacking", true);
 
-            StartCoroutine(DoSomethingAfterDelay(delayDamageAttack, other));
+            PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
 
+            if (damageCoroutine == null)
+            {
+                damageCoroutine = StartCoroutine(RepeatDamage(other));
+            }
         }
     }
 
@@ -61,8 +87,16 @@ public class Robot : MonoBehaviour
     {
         if (other.CompareTag(PLAYER_STRING))
         {
+
+            isPlayerInRange = false;
+
             animator.SetBool("isAttacking", false);
 
+            if (damageCoroutine != null)
+            {
+                StopCoroutine(damageCoroutine);
+                damageCoroutine = null;
+            }
             StartCoroutine(WaitForAttackAnimationToEnd());
         }
     }
@@ -88,10 +122,40 @@ public class Robot : MonoBehaviour
         }
     }
 
+    IEnumerator RepeatDamage(Collider other)
+    {
+        PlayerHealth playerHealth = other.gameObject.GetComponentInParent<PlayerHealth>();
+
+        while (isPlayerInRange)
+        {
+            yield return new WaitForSeconds(delayDamageAttack);
+            playerHealth?.TakeDamage(zombieAttackDamage);
+            delayDamageAttack = subsequentDelayDamageAttack;
+        }
+    }
+
     IEnumerator DoSomethingAfterDelay(float number, Collider other)
     {
         yield return new WaitForSeconds(number);
         PlayerHealth playerHealth = other.gameObject.GetComponentInParent<PlayerHealth>();
         playerHealth?.TakeDamage(zombieAttackDamage);
     }
+
+    public void HandleDeath()
+    {
+    isPlayerInRange = false;
+
+    if (damageCoroutine != null)
+    {
+        StopCoroutine(damageCoroutine);
+        damageCoroutine = null;
+    }
+
+    animator.SetBool("isAttacking", false);
+
+    agent.isStopped = true;
+    agent.speed = 0;
+    agent.velocity = Vector3.zero;
+    }
+
 }

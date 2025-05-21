@@ -49,6 +49,12 @@ public class EnemyHealth : MonoBehaviour
     {
         gameManager.AdjustEnemiesLeft(-1);
 
+        Robot robot = GetComponent<Robot>();
+        if (robot != null)
+        {
+            robot.HandleDeath();
+        }
+
         Quaternion positionRotation = Quaternion.Euler(0f, rotationYoffset, rotationZoffset);
         Vector3 spawnPosition = transform.position + Vector3.up * positionYoffset;
 

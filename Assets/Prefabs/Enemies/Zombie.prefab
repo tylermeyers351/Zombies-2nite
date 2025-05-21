@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933e832f0d322164ab7d5510b2ca0fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieAttackDamage: 2
-  delayDamageAttack: 1
+  zombieAttackDamage: 1
+  firstDelayDamageAttack: 1
+  subsequentDelayDamageAttack: 2.6
 --- !u!114 &2568987322714276178
 MonoBehaviour:
   m_ObjectHideFlags: 0

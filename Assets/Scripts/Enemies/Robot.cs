@@ -20,6 +20,8 @@ public class Robot : MonoBehaviour
     bool isPlayerInRange = false;
     Coroutine damageCoroutine = null;
 
+    bool isDead = false;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -60,8 +62,11 @@ public class Robot : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (isDead) return;
+
         if (other.CompareTag(PLAYER_STRING))
         {
+            Debug.Log("Entered collider");
 
             delayDamageAttack = firstDelayDamageAttack;
 
@@ -87,6 +92,7 @@ public class Robot : MonoBehaviour
     {
         if (other.CompareTag(PLAYER_STRING))
         {
+            Debug.Log("Exited collider");
 
             isPlayerInRange = false;
 
@@ -114,7 +120,10 @@ public class Robot : MonoBehaviour
 
         // Animation finished, resume movement
         agent.isStopped = false;
-        agent.speed = steeringSpeed;
+        if (!isDead)
+        {
+            agent.speed = steeringSpeed;
+        }
 
         if (player != null)
         {
@@ -126,7 +135,7 @@ public class Robot : MonoBehaviour
     {
         PlayerHealth playerHealth = other.gameObject.GetComponentInParent<PlayerHealth>();
 
-        while (isPlayerInRange)
+        while (isPlayerInRange && !isDead)
         {
             yield return new WaitForSeconds(delayDamageAttack);
             playerHealth?.TakeDamage(zombieAttackDamage);
@@ -134,28 +143,23 @@ public class Robot : MonoBehaviour
         }
     }
 
-    IEnumerator DoSomethingAfterDelay(float number, Collider other)
-    {
-        yield return new WaitForSeconds(number);
-        PlayerHealth playerHealth = other.gameObject.GetComponentInParent<PlayerHealth>();
-        playerHealth?.TakeDamage(zombieAttackDamage);
-    }
-
     public void HandleDeath()
     {
-    isPlayerInRange = false;
+        Debug.Log("Death handled");
+        isDead = true;
+        isPlayerInRange = false;
 
-    if (damageCoroutine != null)
-    {
-        StopCoroutine(damageCoroutine);
-        damageCoroutine = null;
-    }
+        if (damageCoroutine != null)
+        {
+            StopCoroutine(damageCoroutine);
+            damageCoroutine = null;
+        }
 
-    animator.SetBool("isAttacking", false);
+        animator.SetBool("isAttacking", false);
 
-    agent.isStopped = true;
-    agent.speed = 0;
-    agent.velocity = Vector3.zero;
+        agent.isStopped = true;
+        agent.speed = 0;
+        agent.velocity = Vector3.zero;
     }
 
 }

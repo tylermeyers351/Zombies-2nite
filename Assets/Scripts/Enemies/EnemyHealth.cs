@@ -70,6 +70,7 @@ public class EnemyHealth : MonoBehaviour
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
+            agent.speed = 0;
 
             animator.applyRootMotion = true;
             animator.SetTrigger("Die");

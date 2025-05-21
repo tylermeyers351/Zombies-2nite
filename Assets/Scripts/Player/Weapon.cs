@@ -40,7 +40,7 @@ public class Weapon : MonoBehaviour
             EnemyHealth enemyHealth = hit.collider.GetComponentInParent<EnemyHealth>();
             enemyHealth?.TakeDamage(weaponSO.Damage);
 
-            Debug.Log("HITTING: " + hit.collider);
+            // Debug.Log("HITTING: " + hit.collider);
         }
     }
 }

@@ -31,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
     Vignette vignette;
 
     int gameOverVirtualCameraPriority = 20;
+    PlayerAudio playerAudio;
+
 
     void Awake()
     {
@@ -45,6 +47,8 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.LogWarning("Vignette not found in volume profile.");
         }
+
+        playerAudio = GetComponent<PlayerAudio>();
     }
 
     void Update()
@@ -61,6 +65,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         AdjustShieldUI();
         ApplyDamageVignette();
+        playerAudio.playHurtPlayerAudio();
 
         if (currentHealth <= 0)
         {

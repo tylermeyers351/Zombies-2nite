@@ -6,6 +6,7 @@ using System.Collections;
 public class Robot : MonoBehaviour
 {
     [SerializeField] int zombieAttackDamage = 2;
+    [SerializeField] float delayDamageAttack = 1f;
 
     FirstPersonController player;
     NavMeshAgent agent;
@@ -42,14 +43,17 @@ public class Robot : MonoBehaviour
         if (other.CompareTag(PLAYER_STRING))
         {
 
-            PlayerHealth playerHealth = other.gameObject.GetComponentInParent<PlayerHealth>();
-            playerHealth?.TakeDamage(zombieAttackDamage);
+
 
             agent.isStopped = true;
             agent.speed = 0;
             agent.velocity = Vector3.zero;
 
+
             animator.SetBool("isAttacking", true);
+
+            StartCoroutine(DoSomethingAfterDelay(delayDamageAttack, other));
+
         }
     }
 
@@ -69,11 +73,9 @@ public class Robot : MonoBehaviour
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         // Wait while the attack animation is playing
-        // Assuming your attack animation has the tag "Attack" or name "Attack"
-        while (stateInfo.IsName("ZombieAttack") && stateInfo.normalizedTime < 1.0f)
+        while (animator.GetCurrentAnimatorStateInfo(0).IsName("ZombieAttack"))
         {
-            yield return null;  // wait for next frame
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
         }
 
         // Animation finished, resume movement
@@ -84,5 +86,12 @@ public class Robot : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
         }
+    }
+
+    IEnumerator DoSomethingAfterDelay(float number, Collider other)
+    {
+        yield return new WaitForSeconds(number);
+        PlayerHealth playerHealth = other.gameObject.GetComponentInParent<PlayerHealth>();
+        playerHealth?.TakeDamage(zombieAttackDamage);
     }
 }

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205591820778985598}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 3.8860002, y: 3.1370003, z: 10.908001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,7 +47,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotExplosionVFX: {fileID: 3069931427627608646, guid: 5f62e9f8762317c4fa002066aa14867b, type: 3}
+  positionYoffset: 0
+  rotationYoffset: 190
+  rotationZoffset: 50
   startingHealth: 3
+  timeToDestroy: 45
+  loopedAudioSource: {fileID: 0}
+  deathAudioSource: {fileID: 0}
+  deathGroan1: {fileID: 0}
+  deathGroan2: {fileID: 0}
 --- !u!114 &1088813100687874275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +72,7 @@ MonoBehaviour:
   turretHead: {fileID: 6891268593008245274}
   playerTargetPoint: {fileID: 0}
   projectileSpawnPoint: {fileID: 5559943232253177330}
-  fireRate: 3
+  fireRate: 1
   damage: 2
 --- !u!1 &3138582927313107358
 GameObject:

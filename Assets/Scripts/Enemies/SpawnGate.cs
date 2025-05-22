@@ -1,10 +1,14 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SpawnGate : MonoBehaviour
 {
-    [SerializeField] int spawnTimer = 5;
-    [SerializeField] GameObject robotPrefab;
+    [SerializeField] float spawnTimer = 5f;
+    [SerializeField] float reduceTimer = 0.1f;
+    [SerializeField] float minimumTimer = 1f;
+
+    [SerializeField] GameObject zombiePrefab;
     
     PlayerHealth player;
 
@@ -18,8 +22,9 @@ public class SpawnGate : MonoBehaviour
     {
         while (player)
         {
-            Instantiate(robotPrefab, transform.position, Quaternion.identity);
+            Instantiate(zombiePrefab, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(spawnTimer);
+            spawnTimer = Mathf.Max(minimumTimer, spawnTimer - reduceTimer);
         }
     }
 }

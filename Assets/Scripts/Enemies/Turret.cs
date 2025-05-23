@@ -9,6 +9,7 @@ public class Turret : MonoBehaviour
     [SerializeField] Transform projectileSpawnPoint;
     [SerializeField] float fireRate = 2f;
     [SerializeField] int damage = 2;
+    [SerializeField] AudioSource audioSource;
 
     PlayerHealth player;
 
@@ -26,11 +27,12 @@ public class Turret : MonoBehaviour
 
     IEnumerator fireRoutine()
     {
-        while(player)
+        while (player)
         {
             yield return new WaitForSeconds(fireRate);
             Projectile newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, turretHead.rotation).GetComponent<Projectile>();
             newProjectile.Init(damage);
+            audioSource.Play();
         }
     }
 }

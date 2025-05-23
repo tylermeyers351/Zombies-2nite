@@ -32,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         gameManager = FindFirstObjectByType<GameManager>();
-        gameManager.AdjustEnemiesLeft(1);
+        // gameManager.AdjustEnemiesKilled(1);
     }
 
     public void TakeDamage(int damage)
@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void Death()
     {
-        gameManager.AdjustEnemiesLeft(-1);
+        gameManager.AdjustEnemiesKilled(1);
 
         Robot robot = GetComponent<Robot>();
         if (robot != null)

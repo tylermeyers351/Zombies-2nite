@@ -16,6 +16,7 @@ public class Robot : MonoBehaviour
 
     const string PLAYER_STRING = "Player";
     float steeringSpeed;
+    int attackCount = 0;
 
     bool isPlayerInRange = false;
     Coroutine damageCoroutine = null;
@@ -100,11 +101,15 @@ public class Robot : MonoBehaviour
 
             if (damageCoroutine != null)
             {
-                StopCoroutine(damageCoroutine);
-                damageCoroutine = null;
+                if (attackCount > 0)
+                {
+                    StopCoroutine(damageCoroutine);
+                    damageCoroutine = null;
+                }
             }
             StartCoroutine(WaitForAttackAnimationToEnd());
         }
+        attackCount = 0;
     }
 
     IEnumerator WaitForAttackAnimationToEnd()
@@ -140,6 +145,7 @@ public class Robot : MonoBehaviour
             yield return new WaitForSeconds(delayDamageAttack);
             playerHealth?.TakeDamage(zombieAttackDamage);
             delayDamageAttack = subsequentDelayDamageAttack;
+            attackCount += 1;
         }
     }
 

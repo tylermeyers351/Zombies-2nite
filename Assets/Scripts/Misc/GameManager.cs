@@ -8,19 +8,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text enemiesLeftText;
     [SerializeField] GameObject youWinText;
 
-    int enemiesLeft = 0;
+    int enemiesKilled = 0;
 
-    const string ENEMIES_LEFT_STRING = "Enemies Left: ";
+    const string ENEMIES_LEFT_STRING = "Enemies Killed: ";
 
-    public void AdjustEnemiesLeft(int amount)
+    public void AdjustEnemiesKilled(int amount)
     {
-        enemiesLeft += amount;
-        enemiesLeftText.text = ENEMIES_LEFT_STRING + enemiesLeft.ToString();
+        enemiesKilled += amount;
+        enemiesLeftText.text = ENEMIES_LEFT_STRING + enemiesKilled.ToString();
 
-        if (enemiesLeft <= 0)
-        {
-            // youWinText.SetAct   ive(true);
-        }
+        // if (enemiesLeft <= 0)
+        // {
+        //     youWinText.SetActive(true);
+        // }
     }
 
     public void RestartLevelButton()

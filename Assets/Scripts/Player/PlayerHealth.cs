@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     PlayerAudio playerAudio;
 
     GameManager gameManager;
-    float vignetteValue = .1f;
+    float vignetteValue = .25f;
 
 
     void Awake()

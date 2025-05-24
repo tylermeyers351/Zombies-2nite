@@ -5,6 +5,7 @@ using StarterAssets;
 using Cinemachine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera startVirtualCamera;
     [SerializeField] GameObject crosshair;
     [SerializeField] GameObject activeGameUI;
+    [SerializeField] AudioSource laughAudioSource;
+    [SerializeField] AudioSource chainAudioSource;
 
     int startGameVirtualCameraPriority = 0;
     StarterAssetsInputs starterAssetsInputs;
@@ -24,6 +27,7 @@ public class GameManager : MonoBehaviour
     public float vignetteValue = .5f;
 
     int enemiesKilled = 0;
+    float waitTime = 2.5f;
 
     public bool gameStarted = false;
 
@@ -74,15 +78,25 @@ public class GameManager : MonoBehaviour
         if (!gameStarted)
         {
             Debug.Log("Game started!");
-            gameStarted = true;
             startGameUI.SetActive(false);
             startVirtualCamera.Priority = startGameVirtualCameraPriority;
             starterAssetsInputs.SetCursorState(true);
-            crosshair.SetActive(true);
-            activeGameUI.SetActive(true);
 
-            vignetteValue = 0.1f;
+            laughAudioSource.Play();
+
+            vignetteValue = 0.25f;
             vignette.intensity.value = vignetteValue;
+
+            StartCoroutine(DelayControls());
         }
+    }
+
+    IEnumerator DelayControls()
+    {
+        yield return new WaitForSeconds(waitTime);
+        gameStarted = true;
+        crosshair.SetActive(true);
+        activeGameUI.SetActive(true);
+        chainAudioSource.volume = 0.1f;
     }
 }

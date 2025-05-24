@@ -22,8 +22,11 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		GameManager gameManager;
+
         void Start()
-        {
+        {	
+			gameManager = FindFirstObjectByType<GameManager>();
 			SetCursorState(true);
         }
 
@@ -65,32 +68,50 @@ namespace StarterAssets
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			move = newMoveDirection;
+			if (gameManager.gameStarted)
+			{
+				move = newMoveDirection;
+			}
 		} 
 
 		public void LookInput(Vector2 newLookDirection)
 		{
-			look = newLookDirection;
+			if (gameManager.gameStarted)
+			{
+				look = newLookDirection;
+			}
 		}
 
 		public void JumpInput(bool newJumpState)
 		{
-			jump = newJumpState;
+			if (gameManager.gameStarted)
+			{
+				jump = newJumpState;
+			}
 		}
 
 		public void SprintInput(bool newSprintState)
 		{
-			sprint = newSprintState;
+			if (gameManager.gameStarted)
+			{
+				sprint = newSprintState;
+			}
 		}
 
 		public void ShootInput(bool newShootState)
 		{
-			shoot = newShootState;
+			if (gameManager.gameStarted)
+			{
+				shoot = newShootState;
+			}
 		}
 
 		public void ZoomInput(bool newZoomState)
 		{
-			zoom = newZoomState;
+			if (gameManager.gameStarted)
+			{
+				zoom = newZoomState;
+			}
 		}
 		
 		private void OnApplicationFocus(bool hasFocus)

@@ -9,12 +9,15 @@ public class SpawnGate : MonoBehaviour
     [SerializeField] float minimumTimer = 1f;
 
     [SerializeField] GameObject zombiePrefab;
+
+    GameManager gameManager;
     
     PlayerHealth player;
 
     void Start()
     {
         player = FindFirstObjectByType<PlayerHealth>();
+        gameManager = FindFirstObjectByType<GameManager>();
         StartCoroutine(SpawnRoutine());
     }
 
@@ -22,9 +25,12 @@ public class SpawnGate : MonoBehaviour
     {
         while (player)
         {
-            Instantiate(zombiePrefab, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(spawnTimer);
-            spawnTimer = Mathf.Max(minimumTimer, spawnTimer - reduceTimer);
+            if (gameManager.gameStarted)
+            {
+                Instantiate(zombiePrefab, transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(spawnTimer);
+                spawnTimer = Mathf.Max(minimumTimer, spawnTimer - reduceTimer);
+            }
         }
     }
 }

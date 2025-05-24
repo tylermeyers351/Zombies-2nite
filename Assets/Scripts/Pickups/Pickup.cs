@@ -4,7 +4,7 @@ using System.Collections;
 public abstract class Pickup : MonoBehaviour
 {
     [SerializeField] float rotationSpeed = 100f;
-    [SerializeField] float respawnTime = 5f;
+    float respawnTime = 45f;
     const string playerString = "Player";
 
     // Cache references

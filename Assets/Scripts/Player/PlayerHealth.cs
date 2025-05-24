@@ -26,28 +26,36 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Damage Vignette Settings")]
     [SerializeField] Volume damageVolume;
-    [SerializeField] float vignetteFlashIntensity = 0.4f;
+    [SerializeField] float vignetteFlashIntensity = 0.7f;
     [SerializeField] float vignetteFadeSpeed = 2f;
     Vignette vignette;
 
     int gameOverVirtualCameraPriority = 20;
     PlayerAudio playerAudio;
 
+    GameManager gameManager;
+    float vignetteValue = .1f;
+
 
     void Awake()
     {
-        currentHealth = startingHealth;
-        AdjustShieldUI();
-        // Try to get the vignette from the volume profile
+        gameManager = FindFirstObjectByType<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found in the scene!");
+        }
         if (damageVolume != null && damageVolume.profile.TryGet(out vignette))
         {
-            vignette.intensity.value = 0f; // Ensure it starts invisible
+            vignetteValue = gameManager.vignetteValue;
+            vignette.intensity.value = vignetteValue;
         }
         else
         {
             Debug.LogWarning("Vignette not found in volume profile.");
         }
 
+        currentHealth = startingHealth;
+        AdjustShieldUI();
         playerAudio = GetComponent<PlayerAudio>();
     }
 
@@ -56,7 +64,8 @@ public class PlayerHealth : MonoBehaviour
         // Fade the vignette back to 0 over time
         if (vignette != null)
         {
-            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0f, Time.deltaTime * vignetteFadeSpeed);
+            vignetteValue = gameManager.vignetteValue;
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, vignetteValue, Time.deltaTime * vignetteFadeSpeed);
         }
     }
 
@@ -71,6 +80,7 @@ public class PlayerHealth : MonoBehaviour
         {
             weaponCamera.parent = null;
             deathVirtualCamera.Priority = gameOverVirtualCameraPriority;
+            // vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, vignetteValue, Time.deltaTime * vignetteFadeSpeed);
             StarterAssetsInputs starterAssetsInputs = FindFirstObjectByType<StarterAssetsInputs>();
             starterAssetsInputs.SetCursorState(false);
             Destroy(this.gameObject);

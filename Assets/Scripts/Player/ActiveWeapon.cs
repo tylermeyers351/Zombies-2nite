@@ -48,8 +48,12 @@ public class ActiveWeapon : MonoBehaviour
     {
         currentTime += Time.deltaTime;
         
-        HandleShoot();
-        HandleZoom();
+        GameManager gameManager = FindAnyObjectByType<GameManager>();
+        if (gameManager.gameStarted)
+        {
+            HandleShoot();
+            HandleZoom();
+        }
     }
 
     public void AdjustAmmo(int amount)

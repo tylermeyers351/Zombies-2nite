@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject gameOverContainer;
     [SerializeField] GameObject ammoContainer;
     [SerializeField] GameObject shieldContainer;
+    [SerializeField] GameObject crosshair;
 
     [Header("Damage Vignette Settings")]
     [SerializeField] Volume damageVolume;
@@ -88,6 +89,7 @@ public class PlayerHealth : MonoBehaviour
             gameOverContainer.SetActive(true);
             ammoContainer.SetActive(false);
             shieldContainer.SetActive(false);
+            crosshair.SetActive(false);
         }
     }
 

@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public float vignetteValue = .5f;
 
     int enemiesKilled = 0;
-    float waitTime = 2.5f;
+    float waitTime = 4f;
 
     public bool gameStarted = false;
 

@@ -503,7 +503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3824592600202958525, guid: 3c484d4d3e4f27d4cb4d526041ebd3c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.3
+      value: 35.96
       objectReference: {fileID: 0}
     - target: {fileID: 3824592600202958525, guid: 3c484d4d3e4f27d4cb4d526041ebd3c5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3656,8 +3656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WASD \u2013 Move\nSpace - Jump\r\nShift - Sprint\nLMB \u2013 Shoot\r\nRMB
-    \u2013 Zoom (with Scoped Weapon)"
+  m_text: "WASD \u2013 Move\nLMB \u2013 Shoot\r\nRMB \u2013 Zoom (with Scoped Weapon)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d62029b4f28e95741ad5785fc9ad811b, type: 2}
   m_sharedMaterial: {fileID: -5702900593755947705, guid: d62029b4f28e95741ad5785fc9ad811b, type: 2}
@@ -10627,6 +10626,10 @@ PrefabInstance:
       propertyPath: overlayCanvas
       value: 
       objectReference: {fileID: 1594201107}
+    - target: {fileID: 9042134681364132993, guid: 75a9520bc397ddf4ba0790b103cd6ba2, type: 3}
+      propertyPath: startingHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9042134681364132993, guid: 75a9520bc397ddf4ba0790b103cd6ba2, type: 3}
       propertyPath: shieldContainer
       value: 

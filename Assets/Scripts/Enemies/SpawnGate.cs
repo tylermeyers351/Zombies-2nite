@@ -31,6 +31,10 @@ public class SpawnGate : MonoBehaviour
                 yield return new WaitForSeconds(spawnTimer);
                 spawnTimer = Mathf.Max(minimumTimer, spawnTimer - reduceTimer);
             }
+            else
+            {
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }

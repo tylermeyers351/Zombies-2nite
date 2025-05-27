@@ -48,9 +48,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.179
       objectReference: {fileID: 0}
+    - target: {fileID: 895112482562162106, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996074167088971814, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967580287450330518, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5001159133438348954, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
       propertyPath: m_Name
       value: Machine Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854995301198208848, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5946439159111128315, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161840791436489582, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218715003763988742, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6460126251871133607, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562618708011676234, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562618708011676234, guid: d13b3be78f5cd6241bb814849f322954, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

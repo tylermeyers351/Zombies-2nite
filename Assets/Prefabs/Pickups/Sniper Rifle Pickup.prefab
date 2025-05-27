@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2686186640419781163}
     m_Modifications:
+    - target: {fileID: 1031078029030752894, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211763559487261520, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2703526926761932619, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.587
@@ -19,6 +27,10 @@ PrefabInstance:
     - target: {fileID: 2703526926761932619, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.027
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929657365517317375, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3020618086273859193, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35,6 +47,30 @@ PrefabInstance:
     - target: {fileID: 3346775992642252215, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
       propertyPath: m_Name
       value: Sniper Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660096797231994976, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101248804729375102, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854698848814376265, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6024666224165260032, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406166606665101397, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947344115560278871, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7994243291411470972, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
       propertyPath: m_LocalScale.x
@@ -87,6 +123,10 @@ PrefabInstance:
     - target: {fileID: 7994243291411470972, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.179
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088623173417474860, guid: fb8c5a98191dc8b409234fa1cfa615a9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

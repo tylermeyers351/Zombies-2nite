@@ -84,6 +84,8 @@ public class PlayerHealth : MonoBehaviour
             // vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, vignetteValue, Time.deltaTime * vignetteFadeSpeed);
             StarterAssetsInputs starterAssetsInputs = FindFirstObjectByType<StarterAssetsInputs>();
             starterAssetsInputs.SetCursorState(false);
+
+            gameOver();
             Destroy(this.gameObject);
 
             gameOverContainer.SetActive(true);
@@ -114,6 +116,12 @@ public class PlayerHealth : MonoBehaviour
         {
             vignette.intensity.value = vignetteFlashIntensity;
         }
+    }
+
+    void gameOver()
+    {
+        GameManager gameManager = FindAnyObjectByType<GameManager>();
+        gameManager.gameEnded = true;
     }
 
     

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject activeGameUI;
     [SerializeField] AudioSource laughAudioSource;
     [SerializeField] AudioSource chainAudioSource;
+    [SerializeField] GameObject introText;
 
     int startGameVirtualCameraPriority = 0;
     StarterAssetsInputs starterAssetsInputs;
@@ -27,9 +28,11 @@ public class GameManager : MonoBehaviour
     public float vignetteValue = .5f;
 
     int enemiesKilled = 0;
-    float waitTime = 4f;
+    float cameraTransitionTime = 1.8f;
+    float introTime = 6f;
 
     public bool gameStarted = false;
+    public bool gameEnded = false;
 
     const string ENEMIES_LEFT_STRING = "Zombies Killed: ";
 
@@ -50,6 +53,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (!gameStarted && Input.GetKeyDown(KeyCode.Space))
+        {
+            StartGame();
+        }
+
+        if (gameEnded && Input.GetKeyDown(KeyCode.Space))
+        {
+            RestartLevel();
+            gameEnded = false;
+        }
+    }
+
     public void AdjustEnemiesKilled(int amount)
     {
         enemiesKilled += amount;
@@ -61,7 +78,7 @@ public class GameManager : MonoBehaviour
         // }
     }
 
-    public void RestartLevelButton()
+    public void RestartLevel()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
@@ -73,18 +90,17 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void StartLevelButton()
+    public void StartGame()
     {
         if (!gameStarted)
         {
-            Debug.Log("Game started!");
             startGameUI.SetActive(false);
             startVirtualCamera.Priority = startGameVirtualCameraPriority;
             starterAssetsInputs.SetCursorState(true);
 
             laughAudioSource.Play();
 
-            vignetteValue = 0.25f;
+            vignetteValue = 0.3f;
             vignette.intensity.value = vignetteValue;
 
             StartCoroutine(DelayControls());
@@ -93,10 +109,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DelayControls()
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(cameraTransitionTime);
+        introText.SetActive(true);
         gameStarted = true;
+        yield return new WaitForSeconds(introTime);
+        introText.SetActive(false);
         crosshair.SetActive(true);
         activeGameUI.SetActive(true);
         chainAudioSource.volume = 0.1f;
     }
+    
 }

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class FreeZombie_EyesGlow : MonoBehaviour
 {
-
-
-
-    private int eyesTyp;
     public Material[] BodyMaterials = new Material[1];
 
     public enum EyesGlow
@@ -16,27 +12,24 @@ public class FreeZombie_EyesGlow : MonoBehaviour
         Yes
     }
 
-
     public EyesGlow eyesGlow;
 
-    void OnValidate()
+    void Awake()
     {
-        if (eyesGlow == 0)
+        UpdateGlow();
+    }
+
+    public void UpdateGlow()
+    {
+        if (eyesGlow == EyesGlow.No)
         {
-
-
-
             BodyMaterials[0].DisableKeyword("_EMISSION");
             BodyMaterials[0].SetFloat("_EmissiveExposureWeight", 1);
         }
         else
         {
-
-
             BodyMaterials[0].EnableKeyword("_EMISSION");
             BodyMaterials[0].SetFloat("_EmissiveExposureWeight", 0);
-
         }
-
     }
 }

@@ -78,9 +78,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5944869426135105181}
     m_Modifications:
+    - target: {fileID: 149562199513386407, guid: 2f0230d76a058bf42914afd9ba231e2f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 183418231259260114, guid: 2f0230d76a058bf42914afd9ba231e2f, type: 3}
       propertyPath: m_Name
       value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328159165771062639, guid: 2f0230d76a058bf42914afd9ba231e2f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2975850589247427053, guid: 2f0230d76a058bf42914afd9ba231e2f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569311123985167495, guid: 2f0230d76a058bf42914afd9ba231e2f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4758267459655930649, guid: 2f0230d76a058bf42914afd9ba231e2f, type: 3}
       propertyPath: m_LocalScale.x
@@ -133,6 +149,14 @@ PrefabInstance:
     - target: {fileID: 4758267459655930649, guid: 2f0230d76a058bf42914afd9ba231e2f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.179
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136797389879480885, guid: 2f0230d76a058bf42914afd9ba231e2f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147409327609833819, guid: 2f0230d76a058bf42914afd9ba231e2f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -38,6 +38,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        starterAssetsInputs = FindFirstObjectByType<StarterAssetsInputs>();
+        starterAssetsInputs.SetCursorState(false);
+
+        StartCoroutine(EnsureCursorVisible());
+
         if (damageVolume != null && damageVolume.profile.TryGet(out vignette))
         {
             vignette.intensity.value = vignetteValue;
@@ -48,7 +53,6 @@ public class GameManager : MonoBehaviour
         }
         if (!gameStarted)
         {
-            starterAssetsInputs = FindFirstObjectByType<StarterAssetsInputs>();
             starterAssetsInputs.SetCursorState(false);
         }
     }
@@ -64,6 +68,11 @@ public class GameManager : MonoBehaviour
         {
             RestartLevel();
             gameEnded = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitButton();
         }
     }
 
@@ -96,9 +105,11 @@ public class GameManager : MonoBehaviour
         {
             startGameUI.SetActive(false);
             startVirtualCamera.Priority = startGameVirtualCameraPriority;
-            starterAssetsInputs.SetCursorState(true);
 
-            laughAudioSource.Play();
+            if (!laughAudioSource.isPlaying)
+            {
+                laughAudioSource.Play();
+            }
 
             vignetteValue = 0.3f;
             vignette.intensity.value = vignetteValue;
@@ -109,6 +120,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DelayControls()
     {
+        starterAssetsInputs.SetCursorState(true);
         yield return new WaitForSeconds(cameraTransitionTime);
         introText.SetActive(true);
         gameStarted = true;
@@ -117,6 +129,18 @@ public class GameManager : MonoBehaviour
         crosshair.SetActive(true);
         activeGameUI.SetActive(true);
         chainAudioSource.volume = 0.1f;
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(cameraTransitionTime + introTime);
+    }
+
+    IEnumerator EnsureCursorVisible()
+    {
+        yield return new WaitForSeconds(0.1f);
+        starterAssetsInputs.SetCursorState(false);
+        Debug.Log("Cursor state enforced after delay");
     }
     
 }
